@@ -1,0 +1,8 @@
+{
+  "name": "link-shortener-nodejs-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/fabiano1133/link-shortener-nodejs-api.git",
+  "author": "fabiano.santos <fabiano.santos@rarolabs.com.br>",
+  "license": "MIT"
+}
