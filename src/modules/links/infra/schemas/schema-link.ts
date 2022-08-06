@@ -1,9 +1,9 @@
 import { ICreateLinks } from '@modules/links/domain/models/ICreateLink';
-import { model, Schema } from 'mongoose';
+import { Model, model, Schema } from 'mongoose';
 
-const linkSchema = new Schema<ICreateLinks>({
+const linkSchema: Schema = new Schema<ICreateLinks>({
     url: { type: String, required: true },
     isShorted: Boolean,
 });
 
-export const Link = model<ICreateLinks>('Link', linkSchema);
+export const Link: Model<ICreateLinks> = model<ICreateLinks>('Link', linkSchema);

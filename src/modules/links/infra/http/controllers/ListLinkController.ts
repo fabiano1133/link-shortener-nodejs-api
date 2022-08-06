@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { ListLinkUseCase } from '../../services/ListLinkUseCase';
+import { ListLinkUseCase } from '../../../services/ListLinkUseCase';
 
 export class ListLinkController {
     async handle(req: Request, res: Response): Promise<Response> {

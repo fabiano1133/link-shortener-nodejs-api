@@ -1,17 +1,12 @@
-import { db } from '../../../shared/db';
 import { ICreateLinks } from '../domain/models/ICreateLink';
+import { Link } from '../infra/schemas/schema-link';
 
 export class CreateLinkUseCase {
-    async execute({ url, isShorted }: ICreateLinks): Promise<any> {
-        const data = db;
-
-        const link = {
+    async execute({ url, isShorted }: ICreateLinks): Promise<void> {
+        const link: ICreateLinks = await Link.create({
             url,
             isShorted,
-        };
-
-        data.push(link);
-
-        return link;
+        });
+        await link.save();
     }
 }

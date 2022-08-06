@@ -1,5 +1,5 @@
+import linkRouter from '../../../../modules/links/infra/http/routes';
 import { Router } from 'express';
-import linkRouter from '@modules/links/infra/controllers/http/routes';
 
 const routes = Router();
 
