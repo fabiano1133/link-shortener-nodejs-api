@@ -1,8 +1,8 @@
-import linkRouter from '../../../../modules/links/infra/http/routes';
+import urlRouter from '@modules/url/infra/http/routes';
 import { Router } from 'express';
 
 const routes = Router();
 
-routes.use('/', linkRouter);
+routes.use('/', urlRouter);
 
 export default routes;

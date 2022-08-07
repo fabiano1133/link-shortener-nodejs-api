@@ -1,6 +1,6 @@
 import { Document } from 'mongoose';
 
-export interface ICreateLinks extends Document<ICreateLinks> {
+export interface IShortenUrl extends Document<IShortenUrl> {
     url: string;
     isShorted: boolean;
 }

@@ -1,5 +1,5 @@
+import { CreateLinkUseCase } from '@modules/url/services/CreateLinkUseCase';
 import { Request, Response } from 'express';
-import { CreateLinkUseCase } from '../../../services/CreateLinkUseCase';
 
 export class CreateLinkController {
     async handle(req: Request, res: Response): Promise<Response> {

@@ -1,7 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import routes from './routes';
-import { run } from '../database';
+
+import { run } from '@shared/infra/database';
+import routes from '@shared/infra/http/routes';
 
 const app = express();
 
