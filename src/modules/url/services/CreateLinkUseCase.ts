@@ -1,12 +1,18 @@
-import { IShortenUrl } from '@modules/url/domain/models/IShortenUrl';
-import { Url } from '@modules/url/infra/schemas/schema';
+import { inject, injectable } from 'tsyringe';
+import { IRepository } from '../domain/repositories/IRepository';
 
-export class CreateLinkUseCase {
-    async execute({ url, isShorted }: IShortenUrl): Promise<void> {
-        const link: IShortenUrl = await Url.create({
-            url,
-            isShorted,
-        });
-        await link.save();
+@injectable()
+class CreateLinkUseCase {
+    constructor(
+        @inject('Repository')
+        private readonly repository: IRepository
+    ) {}
+
+    async execute(url: string): Promise<any> {
+        const urlShortener = await this.repository.create(url);
+
+        return urlShortener;
     }
 }
+
+export default CreateLinkUseCase;

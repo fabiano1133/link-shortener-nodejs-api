@@ -1,14 +1,15 @@
-import { CreateLinkUseCase } from '@modules/url/services/CreateLinkUseCase';
+import CreateLinkUseCase from '@modules/url/services/CreateLinkUseCase';
 import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 
 export class CreateLinkController {
     async handle(req: Request, res: Response): Promise<Response> {
-        const { url, isShorted } = req.body;
+        const { url } = req.body;
 
-        const createLinkUseCase = new CreateLinkUseCase();
+        const createLinkUseCase = container.resolve(CreateLinkUseCase);
 
-        await createLinkUseCase.execute({ url, isShorted });
+        const urlShortener = await createLinkUseCase.execute(url);
 
-        return res.status(201).send();
+        return res.status(201).json(urlShortener);
     }
 }

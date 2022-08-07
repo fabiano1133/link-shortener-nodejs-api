@@ -1,7 +1,11 @@
+import 'reflect-metadata';
+
 import express from 'express';
 import cors from 'cors';
 
-import { run } from '@shared/infra/database';
+import '@shared/infra/database';
+import '@shared/containers';
+
 import routes from '@shared/infra/http/routes';
 
 const app = express();
@@ -9,6 +13,5 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(routes);
-app.use(run);
 
 app.listen(3333, () => console.log(`Server is Running`));

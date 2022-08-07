@@ -1,12 +1,14 @@
-import { connect } from 'mongoose';
+import mongoose from 'mongoose';
 
-export async function run() {
+async function createConnection(): Promise<void> {
     try {
-        connect('mongodb://localhost:27017/link', () =>
-            console.log(`DATA_BASE_CONNECTED`)
-        );
+        await mongoose.connect('mongodb://localhost:27017/url');
+        console.log({
+            message: `Database is connected`,
+        });
     } catch (error) {
-        console.log(`MessaError${error}`);
+        console.log(error);
     }
 }
-run();
+
+createConnection();

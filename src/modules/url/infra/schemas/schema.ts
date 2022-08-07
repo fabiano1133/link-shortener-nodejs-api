@@ -3,7 +3,7 @@ import { Model, model, Schema } from 'mongoose';
 
 const urlSchema: Schema = new Schema<IShortenUrl>({
     url: { type: String, required: true },
-    isShorted: Boolean,
+    isShorted: { type: Boolean, default: true },
 });
 
-export const Url: Model<IShortenUrl> = model<IShortenUrl>('Link', urlSchema);
+export const Url: Model<IShortenUrl> = model<IShortenUrl>('Url', urlSchema);
