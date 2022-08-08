@@ -2,5 +2,8 @@ import { Document } from 'mongoose';
 
 export interface IShortenUrl extends Document<IShortenUrl> {
     url: string;
-    isShorted: boolean;
+    hash: string;
+    shortUrl: string;
+    isShortened: boolean;
+    createdAt: Date;
 }

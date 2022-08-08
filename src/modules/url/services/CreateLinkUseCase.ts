@@ -1,17 +1,25 @@
 import { inject, injectable } from 'tsyringe';
 import { IRepository } from '../domain/repositories/IRepository';
+import shortId from 'shortid';
+import { config } from 'utils/constants';
 
 @injectable()
 class CreateLinkUseCase {
     constructor(
         @inject('Repository')
-        private readonly repository: IRepository
+        readonly repository: IRepository
     ) {}
 
     async execute(url: string): Promise<any> {
-        const urlShortener = await this.repository.create(url);
+        const originUrl = await this.repository.findByShortenUrl(url);
 
-        return urlShortener;
+        const hash = shortId.generate();
+
+        const shortUrl = `${config.BASE_URL}/${hash}`;
+
+        const newUrl = await this.repository.create(url, hash, shortUrl);
+
+        return newUrl;
     }
 }
 

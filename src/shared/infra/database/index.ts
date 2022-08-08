@@ -7,7 +7,7 @@ async function createConnection(): Promise<void> {
             message: `Database is connected`,
         });
     } catch (error) {
-        console.log(error);
+        console.log({ messageError: error });
     }
 }
 
