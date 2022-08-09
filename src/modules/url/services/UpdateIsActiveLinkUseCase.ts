@@ -3,22 +3,20 @@ import { inject, injectable } from 'tsyringe';
 import { IRepository } from '../domain/repositories/IRepository';
 
 @injectable()
-export class GetUrlShortenerUseCase {
+export class UpdateIsActiveLinkUseCase {
     constructor(
         @inject('Repository')
         private readonly repository: IRepository
     ) {}
 
-    async execute(hash: string): Promise<any> {
-        const url = await this.repository.findByHash(hash);
+    async execute(id: string, isActive: boolean): Promise<any> {
+        const url = await this.repository.findUrlById(id);
 
         if (!url) {
-            throw new AppError(`URL NOT FOUND`, 404);
+            throw new AppError(`URL not found`, 404);
         }
+        await this.repository.updateIsActive(id, isActive);
 
-        if (url.isActive === false) {
-            throw new AppError(`Inactive URL`, 404);
-        }
         return url;
     }
 }

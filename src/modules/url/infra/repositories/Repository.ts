@@ -2,12 +2,24 @@ import { IRepository } from '@modules/url/domain/repositories/IRepository';
 import { Url } from '@modules/url/infra/schemas/schema';
 
 export class Repository implements IRepository {
+    async findUrlById(id: any): Promise<any> {
+        const url = await Url.findOne({ _id: id });
+
+        return url;
+    }
+    async updateIsActive(id: string, isActive: boolean): Promise<any> {
+        const query = { _id: id };
+
+        const urlIsActive = await Url.updateOne(query, { $set: { isActive: isActive } });
+
+        return urlIsActive;
+    }
     async updateShortUrl(shortUrl: string): Promise<any> {
         const url = await Url.updateOne({ shortUrl });
 
         return url;
     }
-    async findByShortenUrl(shortUrl: string): Promise<any> {
+    async findByShortenedUrl(shortUrl: string): Promise<any> {
         const url = await Url.findOne({ shortUrl: shortUrl });
 
         return url;

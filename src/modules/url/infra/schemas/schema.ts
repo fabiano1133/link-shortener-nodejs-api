@@ -5,7 +5,8 @@ const urlSchema: Schema = new Schema<IShortenUrl>({
     url: { type: String, required: true, trim: true },
     hash: { type: String, required: true },
     shortUrl: { type: String, required: true, trim: true },
-    isShortened: { type: Boolean, required: true, default: false },
+    isShortened: { type: Boolean, required: true, default: true },
+    isActive: { type: Boolean, required: true, default: true },
     createdAt: { type: Date, required: true, default: Date.now() },
 });
 
