@@ -5,12 +5,11 @@ import { container } from 'tsyringe';
 export class NotDeleteLinkController {
     async handle(req: Request, res: Response): Promise<Response> {
         const { hash } = req.params;
-        const { shortUrl } = req.body;
 
         const notDeleteLinkUseCase = container.resolve(NotDeleteLinkUseCase);
 
-        const url = await notDeleteLinkUseCase.execute(hash, shortUrl);
+        await notDeleteLinkUseCase.execute(hash);
 
-        return res.json(url);
+        return res.status(204);
     }
 }

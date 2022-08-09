@@ -9,7 +9,7 @@ export class NotDeleteLinkUseCase {
         private readonly repository: IRepository
     ) {}
 
-    async execute(hash: string, shortUrl: string) {
+    async execute(hash: string): Promise<void> {
         const url = await this.repository.findByHash(hash);
 
         if (!url) {
@@ -19,6 +19,5 @@ export class NotDeleteLinkUseCase {
         if (url.isShortened === true) {
             throw new AppError(`Unable to delete an already shortened URL`, 401);
         }
-        return shortUrl;
     }
 }
