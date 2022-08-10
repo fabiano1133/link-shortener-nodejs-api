@@ -1,6 +1,6 @@
 import { Date, Document } from 'mongoose';
 
-export interface IShortenUrl extends Document<IShortenUrl> {
+export interface IShortenedUrl extends Document<IShortenedUrl> {
     url: string;
     hash: string;
     shortUrl: string;

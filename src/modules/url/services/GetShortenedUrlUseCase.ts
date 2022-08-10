@@ -3,7 +3,7 @@ import { inject, injectable } from 'tsyringe';
 import { IRepository } from '../domain/repositories/IRepository';
 
 @injectable()
-export class GetUrlShortenerUseCase {
+export class GetShortenedUrlUseCase {
     constructor(
         @inject('Repository')
         private readonly repository: IRepository
@@ -13,11 +13,11 @@ export class GetUrlShortenerUseCase {
         const url = await this.repository.findByHash(hash);
 
         if (!url) {
-            throw new AppError(`URL NOT FOUND`, 404);
+            throw new AppError(`URL NOT FOUND OR EXPIRED`, 404);
         }
 
         if (url.isActive === false) {
-            throw new AppError(`Inactive URL`, 404);
+            throw new AppError(`Inactive URL`, 400);
         }
         return url;
     }

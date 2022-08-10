@@ -3,7 +3,7 @@ import { inject, injectable } from 'tsyringe';
 import { IRepository } from '../domain/repositories/IRepository';
 
 @injectable()
-export class RetryShortenLinkUseCase {
+export class ReCreateShortenedUrlUseCase {
     constructor(
         @inject('Repository')
         private readonly repository: IRepository
@@ -19,7 +19,7 @@ export class RetryShortenLinkUseCase {
         if (url.shortUrl) {
             throw new AppError(
                 `it is not possible to shorten an already shortened url`,
-                403
+                400
             );
         }
     }

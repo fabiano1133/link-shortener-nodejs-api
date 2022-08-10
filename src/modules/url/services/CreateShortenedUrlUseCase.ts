@@ -2,10 +2,9 @@ import { inject, injectable } from 'tsyringe';
 import { IRepository } from '../domain/repositories/IRepository';
 import shortId from 'shortid';
 import { config } from 'utils/constants';
-let ObjectId = require('node-time-uuid');
 
 @injectable()
-class CreateLinkUseCase {
+export class CreateShortenedUrlUseCase {
     constructor(
         @inject('Repository')
         private readonly repository: IRepository
@@ -23,5 +22,3 @@ class CreateLinkUseCase {
         return newUrl;
     }
 }
-
-export default CreateLinkUseCase;

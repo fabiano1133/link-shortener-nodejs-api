@@ -3,21 +3,20 @@ import { inject, injectable } from 'tsyringe';
 import { IRepository } from '../domain/repositories/IRepository';
 
 @injectable()
-export class NotDeleteLinkUseCase {
+export class UpdateIsActiveShortenedUrlUseCase {
     constructor(
         @inject('Repository')
         private readonly repository: IRepository
     ) {}
 
-    async execute(hash: string): Promise<void> {
-        const url = await this.repository.findByHash(hash);
+    async execute(id: string, isActive: boolean): Promise<any> {
+        const url = await this.repository.findUrlById(id);
 
         if (!url) {
             throw new AppError(`URL not found`, 404);
         }
+        await this.repository.updateIsActive(id, isActive);
 
-        if (url.isShortened === true) {
-            throw new AppError(`Unable to delete an already shortened URL`, 401);
-        }
+        return url;
     }
 }

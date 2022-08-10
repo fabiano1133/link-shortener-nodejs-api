@@ -1,26 +1,27 @@
 import { Router } from 'express';
-import { CreateLinkController } from '@modules/url/infra/http/controllers/CreateLinkController';
-import { GetUrlController } from '../controllers/GetUrlController';
+
 import { urlBodyValidation } from '@config/validation/url-validation.config';
-import { NotUpdateLinkController } from '../controllers/NotUpdateLinkController';
-import { NotDeleteLinkController } from '../controllers/NotDeleteLinkController';
-import { UpdateIsActiveLinkController } from '../controllers/UpdateIsActiveLinkController';
-import { RetryShortenLinkController } from '../controllers/RetryShortenLinkController';
+import { CreateShortenerUrlController } from '../controllers/CreateShortenerUrlController';
+import { DeleteShortenerUrlController } from '../controllers/DeleteShortenerUrlController';
+import { GetShortenerUrlController } from '../controllers/GetShortenerUrlController';
+import { UpdateIsActiveShortenerUrlController } from '../controllers/UpdateIsActiveShortenerUrlController';
+import { ReCreateShortendUrlController } from '../controllers/ReCreateShortendUrlController';
+import { UpdateShortenerUrlController } from '../controllers/UpdateShortenerUrlController';
 
 const urlRouter = Router();
 
-const createLinkController = new CreateLinkController();
-const getUrlShortenerController = new GetUrlController();
-const notUpdateLinkController = new NotUpdateLinkController();
-const notDeleteLinkController = new NotDeleteLinkController();
-const updateIsActiveLinkController = new UpdateIsActiveLinkController();
-const retryShortenLinkController = new RetryShortenLinkController();
+const createShortenerUrlController = new CreateShortenerUrlController();
+const deleteShortenerUrlController = new DeleteShortenerUrlController();
+const getShortenerUrlController = new GetShortenerUrlController();
+const updateIsActiveShortenerUrlController = new UpdateIsActiveShortenerUrlController();
+const reCreateShortendUrlController = new ReCreateShortendUrlController();
+const updateShortenerUrlController = new UpdateShortenerUrlController();
 
-urlRouter.post('/createlink', urlBodyValidation, createLinkController.handle);
-urlRouter.get('/:hash', getUrlShortenerController.handle);
-urlRouter.put('/update/:hash', notUpdateLinkController.handle);
-urlRouter.delete('/delete/:hash', notDeleteLinkController.handle);
-urlRouter.put('/status/:id', updateIsActiveLinkController.handle);
-urlRouter.post('/retryshorturl', retryShortenLinkController.handle);
+urlRouter.post('/createurl', urlBodyValidation, createShortenerUrlController.handle);
+urlRouter.get('/:hash', getShortenerUrlController.handle);
+urlRouter.put('/update/:hash', updateShortenerUrlController.handle);
+urlRouter.delete('/delete/:hash', deleteShortenerUrlController.handle);
+urlRouter.put('/status/:id', updateIsActiveShortenerUrlController.handle);
+urlRouter.post('/retryshortenedurl', reCreateShortendUrlController.handle);
 
 export default urlRouter;

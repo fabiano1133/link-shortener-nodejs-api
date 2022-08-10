@@ -3,7 +3,7 @@ import { inject, injectable } from 'tsyringe';
 import { IRepository } from '../domain/repositories/IRepository';
 
 @injectable()
-export class NotUpdateLinkUseCase {
+export class UpdateShortenedUrlUseCase {
     constructor(
         @inject('Repository')
         private readonly repository: IRepository

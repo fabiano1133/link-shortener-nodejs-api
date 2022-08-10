@@ -1,9 +1,9 @@
-import { IShortenUrl } from '@modules/url/domain/models/IShortenUrl';
+import { IShortenedUrl } from '@modules/url/domain/models/IShortenedUrl';
 import { Model, model, Schema } from 'mongoose';
 
 const date = new Date();
 
-const urlSchema: Schema = new Schema<IShortenUrl>({
+const urlSchema: Schema = new Schema<IShortenedUrl>({
     url: { type: String, required: true, trim: true },
     hash: { type: String, required: true },
     shortUrl: { type: String, required: true, trim: true },
@@ -13,4 +13,4 @@ const urlSchema: Schema = new Schema<IShortenUrl>({
     expiresAt: { type: Date, default: date.setDate(date.getDate() + 7) },
 });
 
-export const Url: Model<IShortenUrl> = model<IShortenUrl>('Url', urlSchema);
+export const Url: Model<IShortenedUrl> = model<IShortenedUrl>('Url', urlSchema);
