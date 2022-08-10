@@ -17,11 +17,30 @@ const updateIsActiveShortenerUrlController = new UpdateIsActiveShortenerUrlContr
 const reCreateShortendUrlController = new ReCreateShortendUrlController();
 const updateShortenerUrlController = new UpdateShortenerUrlController();
 
-urlRouter.post('/createurl', urlBodyValidation, createShortenerUrlController.handle);
-urlRouter.get('/:hash', getShortenerUrlController.handle);
+urlRouter.post(
+    '/createurl',
+    /*    #swagger.parameters['obj'] = {
+  in: 'body',
+  description: 'Create a new shortener url',
+  schema: {
+      $url: '',
+  }
+} */ urlBodyValidation,
+    createShortenerUrlController.handle
+);
+urlRouter.get('/shortened/:hash', getShortenerUrlController.handle);
 urlRouter.put('/update/:hash', updateShortenerUrlController.handle);
 urlRouter.delete('/delete/:hash', deleteShortenerUrlController.handle);
 urlRouter.put('/status/:id', updateIsActiveShortenerUrlController.handle);
-urlRouter.post('/recreateurl', reCreateShortendUrlController.handle);
+urlRouter.post(
+    '/recreateurl',
+    /*    #swagger.parameters['url'] = {
+  in: 'body',
+  description: 'Recreate a already shortener url',
+  schema: {
+      $url: '',
+  }
+} */ reCreateShortendUrlController.handle
+);
 
 export default urlRouter;

@@ -1,8 +1,12 @@
 import 'reflect-metadata';
 
-import express, { NextFunction, Request, Response } from 'express';
+import express, { Application, NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import 'express-async-errors';
+import swaggerUi from 'swagger-ui-express';
+const swaggerFile = require('../../../swagger-output.json');
+import bodyParser from 'body-parser';
+import morgan from 'morgan';
 
 import '@shared/infra/database';
 import '@shared/containers';
@@ -14,12 +18,21 @@ import { errors } from 'celebrate';
 import { PORT } from '@config/dotenv/config';
 import { config } from 'utils/constants';
 
-const app = express();
+const app: Application = express();
 
-app.use(cors());
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(routes);
 app.use(errors());
+app.use(morgan('tiny'));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    app.use(cors());
+    next();
+});
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     if (err instanceof AppError) {

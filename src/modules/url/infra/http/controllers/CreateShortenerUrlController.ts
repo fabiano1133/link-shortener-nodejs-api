@@ -1,7 +1,10 @@
 import { CreateShortenedUrlUseCase } from '@modules/url/services/CreateShortenedUrlUseCase';
 import { Request, Response } from 'express';
+import { Get, Post, Route } from 'tsoa';
 import { container } from 'tsyringe';
+@Route('createurl')
 export class CreateShortenerUrlController {
+    @Get('/')
     async handle(req: Request, res: Response): Promise<any> {
         const { url } = req.body;
 
