@@ -17,7 +17,7 @@ export class UpdateShortenedUrlUseCase {
         }
 
         if (url.isShortened === true) {
-            throw new AppError('Unable to update an already shortened URL', 401);
+            throw new AppError('Unable to update an already shortened URL', 400);
         }
         return shortUrl;
     }

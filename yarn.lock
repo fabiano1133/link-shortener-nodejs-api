@@ -353,6 +353,11 @@ acorn-walk@^8.1.1:
   resolved "http://nexus-prd.bancobmg.com.br/repository/npm-public/acorn-walk/-/acorn-walk-8.2.0.tgz#741210f2e2426454508853a2f44d0ab83b7f69c1"
   integrity sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA==
 
+acorn@^7.4.1:
+  version "7.4.1"
+  resolved "http://nexus-prd.bancobmg.com.br/repository/npm-public/acorn/-/acorn-7.4.1.tgz#feaed255973d2e77555b83dbc08851a6c63520fa"
+  integrity sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A==
+
 acorn@^8.4.1, acorn@^8.8.0:
   version "8.8.0"
   resolved "http://nexus-prd.bancobmg.com.br/repository/npm-public/acorn/-/acorn-8.8.0.tgz#88c0187620435c7f6015803f5539dae05a9dbea8"
@@ -457,7 +462,7 @@ binary-extensions@^2.0.0:
   resolved "http://nexus-prd.bancobmg.com.br/repository/npm-public/binary-extensions/-/binary-extensions-2.2.0.tgz#75f502eeaf9ffde42fc98829645be4ea76bd9e2d"
   integrity sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==
 
-body-parser@1.20.0:
+body-parser@1.20.0, body-parser@^1.20.0:
   version "1.20.0"
   resolved "http://nexus-prd.bancobmg.com.br/repository/npm-public/body-parser/-/body-parser-1.20.0.tgz#3de69bd89011c11573d7bfee6a64f11b6bd27cc5"
   integrity sha512-DfJ+q6EPcGKZD1QWUjSpqp+Q7bDQTsQIF4zfUAtZ6qk+H/3/QRhg9CEp39ss+/T2vw0+HaidC0ecJj/DRLIaKg==
@@ -668,6 +673,11 @@ deep-is@^0.1.3:
   version "0.1.4"
   resolved "http://nexus-prd.bancobmg.com.br/repository/npm-public/deep-is/-/deep-is-0.1.4.tgz#a6f2dce612fadd2ef1f519b73551f17e85199831"
   integrity sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==
+
+deepmerge@^4.2.2:
+  version "4.2.2"
+  resolved "http://nexus-prd.bancobmg.com.br/repository/npm-public/deepmerge/-/deepmerge-4.2.2.tgz#44d2ea3679b8f4d4ffba33f03d865fc1e7bf4955"
+  integrity sha512-FJ3UgI4gIl+PHZm53knsuSFpE+nESMr7M4v9QcgB7S63Kj/6WqMiFQJpBBYz1Pt+66bZpP3Q7Lye0Oo9MPKEdg==
 
 delayed-stream@~1.0.0:
   version "1.0.0"
@@ -1115,7 +1125,7 @@ glob-parent@^6.0.1:
   dependencies:
     is-glob "^4.0.3"
 
-glob@^7.1.3:
+glob@^7.1.3, glob@^7.1.7:
   version "7.2.3"
   resolved "http://nexus-prd.bancobmg.com.br/repository/npm-public/glob/-/glob-7.2.3.tgz#b8df0fb802bbfa8e89bd1d938b4e16578ed44f2b"
   integrity sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==
@@ -2141,6 +2151,28 @@ supports-preserve-symlinks-flag@^1.0.0:
   version "1.0.0"
   resolved "http://nexus-prd.bancobmg.com.br/repository/npm-public/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
+
+swagger-autogen@^2.21.5:
+  version "2.21.5"
+  resolved "http://nexus-prd.bancobmg.com.br/repository/npm-public/swagger-autogen/-/swagger-autogen-2.21.5.tgz#143430697495ae0f541ceadea1ff7d48b998cb62"
+  integrity sha512-HEpOfxV2R1VoEkwRhTMGNa2PAVt8wnCjMDTiZmAQ1MRDUejKljWh2CxwPfwzdRF9n8fdjUUJS77G/hT1de6e7w==
+  dependencies:
+    acorn "^7.4.1"
+    deepmerge "^4.2.2"
+    glob "^7.1.7"
+    json5 "^2.2.1"
+
+swagger-ui-dist@>=4.11.0:
+  version "4.13.2"
+  resolved "http://nexus-prd.bancobmg.com.br/repository/npm-public/swagger-ui-dist/-/swagger-ui-dist-4.13.2.tgz#fb814efd51bf06aa8630c0a0af6e3caa48ac6552"
+  integrity sha512-jHL6UyIYpvEI7NsuWd0R3hJaPQTg6Oo4qSBo+oVfOEkv6rrQm/475RGSMmZgV6ajp+Sgrp9CqrDjQYAgQqiv1A==
+
+swagger-ui-express@^4.5.0:
+  version "4.5.0"
+  resolved "http://nexus-prd.bancobmg.com.br/repository/npm-public/swagger-ui-express/-/swagger-ui-express-4.5.0.tgz#feb1314627092eb9c7e6b65ee018927011445530"
+  integrity sha512-DHk3zFvsxrkcnurGvQlAcLuTDacAVN1JHKDgcba/gr2NFRE4HGwP1YeHIXMiGznkWR4AeS7X5vEblNn4QljuNA==
+  dependencies:
+    swagger-ui-dist ">=4.11.0"
 
 text-table@^0.2.0:
   version "0.2.0"

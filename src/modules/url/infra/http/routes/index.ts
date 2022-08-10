@@ -22,6 +22,6 @@ urlRouter.get('/:hash', getShortenerUrlController.handle);
 urlRouter.put('/update/:hash', updateShortenerUrlController.handle);
 urlRouter.delete('/delete/:hash', deleteShortenerUrlController.handle);
 urlRouter.put('/status/:id', updateIsActiveShortenerUrlController.handle);
-urlRouter.post('/retryshortenedurl', reCreateShortendUrlController.handle);
+urlRouter.post('/recreateurl', reCreateShortendUrlController.handle);
 
 export default urlRouter;
