@@ -11,6 +11,8 @@ import routes from '@shared/infra/http/routes';
 import { AppError } from '@shared/errors/AppError';
 
 import { errors } from 'celebrate';
+import { PORT } from '@config/dotenv/config';
+import { config } from 'utils/constants';
 
 const app = express();
 
@@ -33,4 +35,8 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     });
 });
 
-app.listen(3333, () => console.log(`Server is Running`));
+app.listen(`${PORT}`, () =>
+    console.log({
+        message: `Aplication is Running 🎉😎 => Access in ${config.BASE_URL}`,
+    })
+);

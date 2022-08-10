@@ -1,4 +1,4 @@
-import { Document } from 'mongoose';
+import { Date, Document } from 'mongoose';
 
 export interface IShortenUrl extends Document<IShortenUrl> {
     url: string;
@@ -6,5 +6,6 @@ export interface IShortenUrl extends Document<IShortenUrl> {
     shortUrl: string;
     isShortened: boolean;
     isActive: boolean;
-    createdAt: Date;
+    createAt: Date;
+    expiresAt: Date;
 }

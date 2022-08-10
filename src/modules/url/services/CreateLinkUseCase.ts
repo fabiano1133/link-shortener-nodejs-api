@@ -2,7 +2,7 @@ import { inject, injectable } from 'tsyringe';
 import { IRepository } from '../domain/repositories/IRepository';
 import shortId from 'shortid';
 import { config } from 'utils/constants';
-import { AppError } from '@shared/errors/AppError';
+let ObjectId = require('node-time-uuid');
 
 @injectable()
 class CreateLinkUseCase {
@@ -17,6 +17,8 @@ class CreateLinkUseCase {
         const shortUrl = `${config.BASE_URL}/${hash}`;
 
         const newUrl = await this.repository.create(url, hash, shortUrl);
+
+        newUrl.save();
 
         return newUrl;
     }
