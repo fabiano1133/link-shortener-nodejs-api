@@ -28,7 +28,7 @@ urlRouter.post(
 } */ urlBodyValidation,
     createShortenerUrlController.handle
 );
-urlRouter.get('/shortened/:hash', getShortenerUrlController.handle);
+urlRouter.get('/:hash', getShortenerUrlController.handle);
 urlRouter.put('/update/:hash', updateShortenerUrlController.handle);
 urlRouter.delete('/delete/:hash', deleteShortenerUrlController.handle);
 urlRouter.put('/status/:id', updateIsActiveShortenerUrlController.handle);
