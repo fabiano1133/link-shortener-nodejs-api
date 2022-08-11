@@ -10,7 +10,7 @@ const urlSchema: Schema = new Schema<IShortenedUrl>({
     isShortened: { type: Boolean, required: true, default: true },
     isActive: { type: Boolean, required: true, default: true },
     expired: { type: Boolean, required: true, default: false },
-    createAt: { type: Date, default: Date.now, expires: '10080m' },
+    createAt: { type: Date, default: Date.now },
     expiresAt: { type: Date, default: date.setDate(date.getDate() + 7) },
 });
 

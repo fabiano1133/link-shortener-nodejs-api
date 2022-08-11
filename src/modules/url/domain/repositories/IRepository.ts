@@ -5,4 +5,5 @@ export interface IRepository {
     findUrlById(id: any): Promise<any>;
     updateShortUrl(shortUrl: string): Promise<any>;
     updateIsActive(id: string, isActive: boolean): Promise<any>;
+    expiredUpdate(status: boolean): Promise<any>;
 }

@@ -7,6 +7,7 @@ import { GetShortenerUrlController } from '../controllers/GetShortenerUrlControl
 import { UpdateIsActiveShortenerUrlController } from '../controllers/UpdateIsActiveShortenerUrlController';
 import { ReCreateShortendUrlController } from '../controllers/ReCreateShortendUrlController';
 import { UpdateShortenerUrlController } from '../controllers/UpdateShortenerUrlController';
+import { ReCreateExpiredShortenedUrlController } from '../controllers/ReCreateExpiredShortenedUrlController';
 
 const urlRouter = Router();
 
@@ -16,6 +17,7 @@ const getShortenerUrlController = new GetShortenerUrlController();
 const updateIsActiveShortenerUrlController = new UpdateIsActiveShortenerUrlController();
 const reCreateShortendUrlController = new ReCreateShortendUrlController();
 const updateShortenerUrlController = new UpdateShortenerUrlController();
+const reCreateExpiredShortenedUrlController = new ReCreateExpiredShortenedUrlController();
 
 urlRouter.post(
     '/createurl',
@@ -28,12 +30,12 @@ urlRouter.post(
 } */ urlBodyValidation,
     createShortenerUrlController.handle
 );
-urlRouter.get('/:hash', getShortenerUrlController.handle);
+urlRouter.get('/:shortenerUrl', getShortenerUrlController.handle);
 urlRouter.put('/update/:hash', updateShortenerUrlController.handle);
 urlRouter.delete('/delete/:hash', deleteShortenerUrlController.handle);
 urlRouter.put('/status/:id', updateIsActiveShortenerUrlController.handle);
 urlRouter.post(
-    '/recreateurl',
+    '/retrycreateshortenedurl/:hash',
     /*    #swagger.parameters['url'] = {
   in: 'body',
   description: 'Recreate a already shortener url',
@@ -41,6 +43,10 @@ urlRouter.post(
       $url: '',
   }
 } */ reCreateShortendUrlController.handle
+);
+urlRouter.post(
+    '/recreateexpiredshortenedurl',
+    reCreateExpiredShortenedUrlController.handle
 );
 
 export default urlRouter;

@@ -13,7 +13,7 @@ export class CreateShortenedUrlUseCase {
     async execute(url: string): Promise<any> {
         const hash = shortId.generate();
 
-        const shortUrl = `${config.BASE_URL}/${hash}`;
+        const shortUrl = `${config.BASE_URL}/v1/${hash}`;
 
         const newUrl = await this.repository.create(url, hash, shortUrl);
 

@@ -36,4 +36,11 @@ export class Repository implements IRepository {
 
         return urlHash;
     }
+
+    async expiredUpdate(status: boolean): Promise<any> {
+        const expiredUrl = await Url.updateOne({
+            $set: { expired: status },
+        });
+        return expiredUrl;
+    }
 }

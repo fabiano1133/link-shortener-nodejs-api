@@ -3,14 +3,14 @@ import { inject, injectable } from 'tsyringe';
 import { IRepository } from '../domain/repositories/IRepository';
 
 @injectable()
-export class ReCreateShortenedUrlUseCase {
+export class RetryCreateShortenedUrlUseCase {
     constructor(
         @inject('Repository')
         private readonly repository: IRepository
     ) {}
 
-    async execute(shortUrl: string): Promise<void> {
-        const url = await this.repository.findByShortenedUrl(shortUrl);
+    async execute(shortUrl: string, hash: string): Promise<void> {
+        const url = await this.repository.findByHash(hash);
 
         if (!url) {
             throw new AppError(`URL not found`, 404);

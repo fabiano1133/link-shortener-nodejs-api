@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 app.use(routes);
 app.use(errors());
 app.use(morgan('tiny'));
-app.use('/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use('/swagger-api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');

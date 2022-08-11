@@ -10,20 +10,28 @@ export class GetShortenedUrlUseCase {
         private readonly repository: IRepository
     ) {}
 
-    async execute(hash: string): Promise<any> {
-        //const redisCache = new RedisCacheService();
+    async execute(shortenerUrl: string): Promise<any> {
+        const dateNow = new Date().getDate();
 
-        const url = await this.repository.findByHash(hash);
-
-        //await redisCache.save('List', 'teste');
+        const url = await this.repository.findByHash(shortenerUrl);
 
         if (!url) {
-            throw new AppError(`URL NOT FOUND OR EXPIRED`, 404);
+            throw new AppError(`URL NOT FOUND`, 404);
+        }
+
+        if (url.expiresAt.getDate() === dateNow) {
+            await this.repository.expiredUpdate((url.expired = true));
+            throw new AppError(`URL expired`, 400);
         }
 
         if (url.isActive === false) {
             throw new AppError(`Inactive URL`, 400);
         }
+
+        if (url.expired === true) {
+            throw new AppError(`URL expired!`, 400);
+        }
+
         return url;
     }
 }

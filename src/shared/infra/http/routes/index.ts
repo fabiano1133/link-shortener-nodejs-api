@@ -3,6 +3,6 @@ import { Router } from 'express';
 
 const routes = Router();
 
-routes.use('/', urlRouter);
+routes.use('/v1', urlRouter);
 
 export default routes;

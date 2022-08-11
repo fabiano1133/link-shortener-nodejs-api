@@ -4,12 +4,12 @@ import { container } from 'tsyringe';
 
 export class GetShortenerUrlController {
     async handle(req: Request, res: Response): Promise<any> {
-        const { hash } = req.params;
+        const { shortenerUrl } = req.params;
 
         const getShortenedUrlUseCase = container.resolve(GetShortenedUrlUseCase);
 
-        const urlHash = await getShortenedUrlUseCase.execute(hash);
+        const shortenedUrl = await getShortenedUrlUseCase.execute(shortenerUrl);
 
-        return res.redirect(urlHash.url);
+        return res.redirect(shortenedUrl.url);
     }
 }
