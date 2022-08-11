@@ -6,6 +6,7 @@ export interface IShortenedUrl extends Document<IShortenedUrl> {
     shortUrl: string;
     isShortened: boolean;
     isActive: boolean;
+    expired: boolean;
     createAt: Date;
     expiresAt: Date;
 }

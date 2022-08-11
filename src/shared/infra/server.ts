@@ -8,7 +8,7 @@ const swaggerFile = require('../../../swagger-output.json');
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 
-import '@shared/infra/database';
+import '@config/database';
 import '@shared/containers';
 
 import routes from '@shared/infra/http/routes';
