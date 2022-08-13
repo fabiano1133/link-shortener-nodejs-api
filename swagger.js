@@ -9,6 +9,11 @@ const doc = {
     schemes: ['http', 'https'],
     consumes: ['application/json'],
     produces: ['application/json'],
+    tags: [
+        {
+            name: 'URL',
+        },
+    ],
 };
 
 const outputFile = './swagger-output.json';

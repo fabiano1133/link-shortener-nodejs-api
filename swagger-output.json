@@ -1,12 +1,17 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "SHORTENER URL API",
-    "description": "API that generates shortened URLs from a valid URL",
+    "title": "Shortened URL API",
+    "description": "REST API shorten URL of a web site link",
     "version": "1.0.0"
   },
   "host": "localhost:3333",
-  "basePath": "/",
+  "basePath": "/v1",
+  "tags": [
+    {
+      "name": "URL"
+    }
+  ],
   "schemes": [
     "http",
     "https"
@@ -20,7 +25,7 @@
   "paths": {
     "/createurl": {
       "post": {
-        "description": "Create a new shortener URL",
+        "description": "Create a new shortened URL",
         "parameters": [
           {
             "name": "url",
@@ -31,7 +36,7 @@
               "properties": {
                 "url": {
                   "type": "string",
-                  "example": "https:www.anydomain.com.br"
+                  "example": "http://www.github.com"
                 }
               },
               "required": [
@@ -72,6 +77,9 @@
                 },
                 "message":{
                   "type":"string"
+                },
+                "expires":{
+                  "type":"string"
                 }
               }
             }
@@ -82,11 +90,230 @@
         }
       }
     },
-    "/recreateurl": {
+    "/{hash}": {
+      "get": {
+        "description": "Open shortened URL in WEB",
+        "parameters": [
+        { 
+          "type": "string",
+          "name": "hash",
+          "in": "path",
+          "description": "Genereted hash in new URL",
+          "required": true     
+        }
+      ],
+        "responses": {
+          "200":{
+            "description": "Succefully"
+          },
+          "404":{
+            "description": "URL NOT FOUND"
+          }
+        }
+      }
+    },
+    "/update/{hash}": {
+      "put": {
+        "description": "Cannot change a shortened url",
+        "parameters": [
+          {
+            "name": "hash",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Genereted hash in new URL"
+          },
+          {
+            "name": "url",
+            "in": "body",
+            "required": true,
+            "description": "Shortened URL",
+            "schema": {
+              "type":"object",
+              "properties": {
+                "url":{
+                  "type":"string",
+                  "example": "http://localhost:port/hash"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "400":{
+            "description": "Unable to update an already shortened URL"
+          },
+          "404":{
+            "description": "URL not found!"
+          }
+        }
+      }
+    },
+    "/delete/{hash}": {
+      "delete": {
+        "description": "Cannot delete a shortened url",
+        "parameters": [
+          {
+            "name": "hash",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Genereted hash in new URL"
+          }
+        ],
+        "responses": {
+          "400":{
+            "description": "Unable to delete an already shortened URL"
+          },
+          "404":{
+            "description": "URL not found!"
+          }
+        }
+      }
+    },
+    "/status/{id}": {
+      "put": {
+        "description": "Disable the shortened url",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Shortened url id"
+          },
+          {
+            "name": "isActive",
+            "in": "body",
+            "required": true,
+            "description": "Default value is true",
+            "schema": {
+              "type":"object",
+              "properties": {
+                "isActive":{
+                  "type":"string",
+                  "example": "false"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "404":{
+            "description": "URL not found!"
+          },
+          "204":{
+            "description": "No content"
+          }
+        }
+      }
+    },
+    "/retrycreateshortenedurl/{hash}": {
       "post": {
-        "description": "",
-        "parameters": [],
-        "responses": {}
+        "description": "Cannot shorten an already shortened URL",
+        "parameters": [
+          {
+            "name": "hash",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "url",
+            "in": "body",
+            "description": "Recreate a already shortener url",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string",
+                  "example": "http://localhost:port/hash"
+                }
+              },
+              "required": [
+                "url"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "400":{
+            "description": "it is not possible to shorten an already shortened url"
+          },
+          "404":{
+            "description": "URL not found!"
+          }
+        }
+      }
+    },
+    "/recreateexpiredshortenedurl": {
+      "post": {
+        "description": "Can recreate an expired URL",
+        "parameters": [
+          {
+            "name": "shortUrl",
+            "in": "body",
+            "description": "Recreate a expired shortener url",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "shortUrl": {
+                  "type": "string",
+                  "example": "http://localhost:port/hash"
+                }
+              },
+              "required": [
+                "shortUrl"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema":{
+              "type":"object",
+              "properties": {
+                "url":{
+                  "type":"string"
+                },
+                "hash":{
+                  "type":"string"
+                },
+                "shortUrl":{
+                  "type":"string"
+                },
+                "isShortened":{
+                  "type":"boolean"
+                },
+                "isActive":{
+                  "type":"boolean"
+                },
+                "expiresAt":{
+                  "type":"string"
+                },
+                "_id":{
+                  "type":"string"
+                },
+                "createdAt":{
+                  "type":"string"
+                },
+                "message":{
+                  "type":"string"
+                },
+                "expires":{
+                  "type":"string"
+                }
+              }
+            }
+          },
+          "404":{
+            "description": "Shortened URL not found!"
+          },
+          "400":{
+            "description": "Unexpired URL"
+          }
+        }
       }
     }
   }

@@ -17,7 +17,7 @@ export class DeleteShortenedUrlUseCase {
         }
 
         if (url.isShortened === true) {
-            throw new AppError(`Unable to delete an already shortened URL`, 401);
+            throw new AppError(`Unable to delete an already shortened URL`, 400);
         }
     }
 }

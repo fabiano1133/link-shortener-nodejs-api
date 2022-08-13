@@ -10,10 +10,10 @@ export class GetShortenedUrlUseCase {
         private readonly repository: IRepository
     ) {}
 
-    async execute(shortenerUrl: string): Promise<any> {
+    async execute(hash: string): Promise<any> {
         const dateNow = new Date().getDate();
 
-        const url = await this.repository.findByHash(shortenerUrl);
+        const url = await this.repository.findByHash(hash);
 
         if (!url) {
             throw new AppError(`URL NOT FOUND`, 404);

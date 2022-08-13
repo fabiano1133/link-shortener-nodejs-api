@@ -19,7 +19,7 @@ export class ReCreateExpiredShortenedUrlUseCase {
         }
 
         if (shortenedUrl.expired === false) {
-            throw new AppError(`Periodo de expiracao válido para essa URL`, 400);
+            throw new AppError(`Unexpired URL`, 400);
         }
 
         if (shortenedUrl.expired === true) {
